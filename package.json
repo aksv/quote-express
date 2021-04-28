@@ -7,10 +7,13 @@
     "node": " >=14.16.1"
   },
   "scripts": {
-    "start": "nodemon --exec babel-node src/app.js",
+    "start": "nodemon --exec babel-node src/main.js",
     "clean": "rm -rf dist",
+    "clean:static": "rm -rf static",
+    "clean:all": "npm run clean && npm run clean:static",
     "build": "npm run clean && babel ./src --out-dir dist --copy-files",
-    "prod": "node ./dist/app.js",
+    "build:client": "npm run clean:static && cd client && npm run build && mkdir ../static && cp -R build/* ../static",
+    "prod": "pm2 start ./dist/main.js",
     "lint": "eslint \"src/**/*.js\"",
     "format": "prettier --write \"src/**/*.js\""
   },
@@ -34,6 +37,11 @@
   },
   "dependencies": {
     "core-js": "^3.11.0",
-    "regenerator-runtime": "^0.13.7"
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "quotesy": "^1.0.5",
+    "regenerator-runtime": "^0.13.7",
+    "uuid": "^8.3.2"
   }
 }
