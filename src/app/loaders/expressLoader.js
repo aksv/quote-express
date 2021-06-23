@@ -1,17 +1,11 @@
 import express from 'express';
 import cors from 'cors';
-import path from 'path';
 import routes from 'app/api';
 import config from 'app/config';
 
 export default ({ app, services }) => {
   app.use(cors());
   app.use(express.json());
-
-  app.use(express.static(path.join(__dirname, '../../..', 'static')));
-  app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'build', 'index.html'));
-  });
 
   app.get('/ping', (_, res) => {
     res.json({

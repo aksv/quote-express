@@ -9,10 +9,10 @@
   "scripts": {
     "start": "nodemon --exec babel-node src/main.js",
     "clean": "rm -rf dist",
-    "clean:static": "rm -rf static",
+    "clean:static": "rm -rf nginx/static",
     "clean:all": "npm run clean && npm run clean:static",
     "build": "npm run clean && babel ./src --out-dir dist --copy-files",
-    "build:client": "npm run clean:static && cd client && npm run build && mkdir ../static && cp -R build/* ../static",
+    "build:client": "npm run clean:static && cd client && npm run build && mkdir ../nginx/static && cp -R build/* ../nginx/static",
     "prod": "pm2 start ./dist/main.js",
     "lint": "eslint \"src/**/*.js\"",
     "format": "prettier --write \"src/**/*.js\""
